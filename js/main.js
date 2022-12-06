@@ -12,9 +12,3 @@ function checkStringLength (string, length) {
 }
 
 checkStringLength('hi', 1);
-
-function testFoo () {
-  return 'hello test';
-}
-
-testFoo();
