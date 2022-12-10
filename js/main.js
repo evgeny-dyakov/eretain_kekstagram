@@ -82,16 +82,28 @@ const getCommentsSet = () => {
   return commentsSet;
 };
 
+const getCommentId = () => {
+  const commentsIds = [];
+
+  return () => {
+    let commentId = getRandomInt(1000000, commentsIds.length + 2000000);
+    while(commentsIds.includes(commentId)) {
+      commentId = getRandomInt(1000000, commentsIds.length + 2000000);
+    }
+    commentsIds.push(commentId);
+    return commentId;
+  };
+};
+
 const getComments = (quantity) => {
   const comments = [];
-  let commentId = 1;
+  const commentId = getCommentId();
 
   for (let i = 0; i < quantity; i++) {
     const commentsSet = getCommentsSet();
 
     commentsSet.forEach((comment) => {
-      comment.id = commentId;
-      commentId++;
+      comment.id = commentId();
     });
 
     comments[i] = commentsSet;
@@ -123,4 +135,4 @@ const getPhotos = (quantity) => {
   return photos;
 };
 
-console.log(getPhotos(5));
+console.log(getPhotos(25));
