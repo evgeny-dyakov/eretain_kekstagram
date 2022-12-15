@@ -66,6 +66,21 @@ const getLikes = (quantity) => {
   return likes;
 };
 
+const getCommentId = () => {
+  const commentsIds = [];
+
+  return () => {
+    let commentId = getRandomInt(100, commentsIds.length + 200);
+
+    while(commentsIds.includes(commentId)) {
+      commentId = getRandomInt(100, commentsIds.length + 200);
+    }
+
+    commentsIds.push(commentId);
+    return commentId;
+  };
+};
+
 const getAvatar = () => {
   const avatar = `img/avatar-${getRandomInt(1, 6)}.svg`;
   return avatar;
@@ -113,48 +128,26 @@ const getName = () => {
   return name;
 };
 
-const getCommentsSet = () => {
-  const commentsSet = [];
-  const setLength = getRandomInt(3, 3);
-
-  for (let j = 0; j < setLength; j++) {
-    const comment = {
-      avatar: getAvatar(),
-      message: getMessage(),
-      name: getName(),
-    };
-
-    commentsSet[j] = comment;
-  }
-
-  return commentsSet;
-};
-
-const getCommentId = () => {
-  const commentsIds = [];
-
-  return () => {
-    let commentId = getRandomInt(1, 9);
-    while(commentsIds.includes(commentId)) {
-      commentId = getRandomInt(1, 9);
-    }
-    commentsIds.push(commentId);
-    console.log(commentId);
-    return commentId;
-  };
-};
-
 const getComments = (quantity) => {
   const comments = [];
   const commentId = getCommentId();
 
   for (let i = 0; i < quantity; i++) {
-    const commentsSet = getCommentsSet();
+    const commentsSet = [];
+    const setLength = getRandomInt(5, 15);
+
+    for (let j = 0; j < setLength; j++) {
+      const comment = {
+        avatar: getAvatar(),
+        message: getMessage(),
+        name: getName(),
+      };
+      commentsSet[j] = comment;
+    }
 
     commentsSet.forEach((comment) => {
       comment.id = commentId();
     });
-
     comments[i] = commentsSet;
   }
 
@@ -177,11 +170,11 @@ const getPhotos = (quantity) => {
       likes: likes[i],
       comments: comments[i],
     };
-
     photos.push(photo);
   }
 
   return photos;
 };
 
-console.log(getPhotos(3));
+checkStringLength();
+getPhotos(25);
