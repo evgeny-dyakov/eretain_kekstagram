@@ -1,3 +1,3 @@
 import {getPhotos} from './get-photos.js';
 
-getPhotos(25);
+console.log(getPhotos(25));
