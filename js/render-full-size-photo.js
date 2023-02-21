@@ -1,5 +1,3 @@
-// import {photosData} from './generate-photos-data.js';
-
 const bigPhoto = document.querySelector('.big-picture');
 const bigPhotoImg = bigPhoto.querySelector('.big-picture__img img');
 const bigPhotoLikes = bigPhoto.querySelector('.likes-count');
@@ -27,8 +25,8 @@ const addBigPhotoCancelHandlers = () => {
   });
 };
 
-const updateComments = (index) => {
-  const commentsData = photosData[index].comments;
+const updateComments = (photoData) => {
+  const commentsData = photoData.comments;
   const commentsFragment = document.createDocumentFragment();
 
   commentsData.forEach((el) => {
@@ -50,19 +48,19 @@ const updateComments = (index) => {
   bigPhotoComments.appendChild(commentsFragment);
 };
 
-const updateBigPhoto = (index) => {
-  bigPhotoImg.src = photosData[index].url;
-  bigPhotoLikes.textContent = photosData[index].likes;
-  bigPhotoCommentsCount.textContent = photosData[index].comments.length;
-  bigPhotoDescription.textContent = photosData[index].description;
+const updateBigPhoto = (photoData) => {
+  bigPhotoImg.src = photoData.url;
+  bigPhotoLikes.textContent = photoData.likes;
+  bigPhotoCommentsCount.textContent = photoData.comments.length;
+  bigPhotoDescription.textContent = photoData.description;
 
-  updateComments(index);
+  updateComments(photoData);
 };
 
-const addThumbnailClickHandler = (thumbnail, thumbnailIndex) => {
+const addThumbnailClickHandler = (thumbnail, photoData) => {
   thumbnail.addEventListener('click', () => {
     bigPhoto.classList.remove('hidden');
-    updateBigPhoto(thumbnailIndex);
+    updateBigPhoto(photoData);
     document.body.classList.add('modal-open');
     addBigPhotoCancelHandlers();
 
@@ -70,9 +68,9 @@ const addThumbnailClickHandler = (thumbnail, thumbnailIndex) => {
   });
 };
 
-const renderFullSizePhoto = (thumbnails) => {
+const renderFullSizePhoto = (thumbnails, photosData) => {
   for (let i = 0; i < thumbnails.length; i++) {
-    addThumbnailClickHandler(thumbnails[i], i);
+    addThumbnailClickHandler(thumbnails[i], photosData[i]);
   }
 };
 

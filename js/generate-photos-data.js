@@ -1,6 +1,4 @@
-const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-// const checkStringLength = (string, length) => string.length <= length;
+import {getRandomNum} from './util.js';
 
 const getUniqueNum = (min, max) => {
   const numbers = [];
@@ -77,13 +75,14 @@ const getComments = (quantity) => {
   return comments;
 };
 
-const generatePhotosData = (quantity) => {
-  const photos = [];
-  const getPhotoNumber = getUniqueNum(1, quantity);
-  const comments = getComments(quantity);
+const generatePhotosData = () => {
+  const photosCount = 25;
+  const photosData = [];
+  const getPhotoNumber = getUniqueNum(1, photosCount);
+  const comments = getComments(photosCount);
 
-  for (let i = 0; i < quantity; i++) {
-    photos[i] = {
+  for (let i = 0; i < photosCount; i++) {
+    photosData[i] = {
       id: i + 1,
       url: `photos/${getPhotoNumber()}.jpg`,
       description: `описание ${i + 1}`,
@@ -92,9 +91,7 @@ const generatePhotosData = (quantity) => {
     };
   }
 
-  return photos;
+  return photosData;
 };
-
-// export const photosData = generatePhotosData(25);
 
 export {generatePhotosData};
