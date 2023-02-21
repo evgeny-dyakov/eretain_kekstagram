@@ -1,23 +1,23 @@
-const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 // const checkStringLength = (string, length) => string.length <= length;
 
-const getRandomUniqueNumber = (min, max) => {
+const getUniqueNum = (min, max) => {
   const numbers = [];
 
   return () => {
     if (numbers.length >= max - min + 1) {
-      console.error(`вне диапазона от ${min} до ${max}`);
-      return;
+      return null;
     }
-    let number = getRandomInt(min, max);
+    let number = getRandomNum(min, max);
     while (numbers.includes(number)) {
-      number = getRandomInt(min, max);
+      number = getRandomNum(min, max);
     }
     numbers.push(number);
     return number;
   };
 };
+
 
 const getMessage = () => {
   const messages = [
@@ -29,7 +29,7 @@ const getMessage = () => {
     'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
   ];
 
-  return messages[getRandomInt(0, messages.length - 1)];
+  return messages[getRandomNum(0, messages.length - 1)];
 };
 
 const getName = () => {
@@ -45,21 +45,27 @@ const getName = () => {
     'Артур',
     'Никита'
   ];
-  return names[getRandomInt(0, names.length - 1)];
+
+  return names[getRandomNum(0, names.length - 1)];
 };
 
 const getComments = (quantity) => {
+  const minCommentId = 111111;
+  const maxCommentId = 999999;
+  const minCommentsPerPhoto = 5;
+  const maxCommentsPerPhoto = 10;
+
   const comments = [];
-  const getCommentId = getRandomUniqueNumber(100, 999);
+  const getCommentId = getUniqueNum(minCommentId, maxCommentId);
 
   for (let i = 0; i < quantity; i++) {
     const commentsSet = [];
-    const commentsSetLenght = getRandomInt(5, 10);
+    const commentsSetLenght = getRandomNum(minCommentsPerPhoto, maxCommentsPerPhoto);
 
     for (let j = 0; j < commentsSetLenght; j++) {
       const comment = {
         id: getCommentId(),
-        avatar: `img/avatar${getRandomInt(1, 6)}`,
+        avatar: `img/avatar-${getRandomNum(1, 6)}.svg`,
         message: getMessage(),
         name: getName()
       };
@@ -68,26 +74,25 @@ const getComments = (quantity) => {
 
     comments[i] = commentsSet;
   }
-
   return comments;
 };
 
 const getPhotos = (quantity) => {
-  const photos = [];
-  const getPhotoNumber = getRandomUniqueNumber(1, quantity);
+  const fotos = [];
+  const getPhotoNumber = getUniqueNum(1, quantity);
   const comments = getComments(quantity);
 
   for (let i = 0; i < quantity; i++) {
-    photos[i] = {
+    fotos[i] = {
       id: i + 1,
       url: `photos/${getPhotoNumber()}.jpg`,
       description: `описание ${i + 1}`,
-      likes: getRandomInt(15, 200),
+      likes: getRandomNum(15, 200),
       comments: comments[i],
     };
   }
 
-  return photos;
+  return fotos;
 };
 
-export {getPhotos};
+export const photos = getPhotos(25);
