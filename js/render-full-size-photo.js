@@ -1,4 +1,4 @@
-import {photos} from './get-photos.js';
+// import {photosData} from './generate-photos-data.js';
 
 const bigPhoto = document.querySelector('.big-picture');
 const bigPhotoImg = bigPhoto.querySelector('.big-picture__img img');
@@ -28,7 +28,7 @@ const addBigPhotoCancelHandlers = () => {
 };
 
 const updateComments = (index) => {
-  const commentsData = photos[index].comments;
+  const commentsData = photosData[index].comments;
   const commentsFragment = document.createDocumentFragment();
 
   commentsData.forEach((el) => {
@@ -51,10 +51,10 @@ const updateComments = (index) => {
 };
 
 const updateBigPhoto = (index) => {
-  bigPhotoImg.src = photos[index].url;
-  bigPhotoLikes.textContent = photos[index].likes;
-  bigPhotoCommentsCount.textContent = photos[index].comments.length;
-  bigPhotoDescription.textContent = photos[index].description;
+  bigPhotoImg.src = photosData[index].url;
+  bigPhotoLikes.textContent = photosData[index].likes;
+  bigPhotoCommentsCount.textContent = photosData[index].comments.length;
+  bigPhotoDescription.textContent = photosData[index].description;
 
   updateComments(index);
 };
@@ -70,10 +70,10 @@ const addThumbnailClickHandler = (thumbnail, thumbnailIndex) => {
   });
 };
 
-const showBigPhoto = (thumbnails) => {
+const renderFullSizePhoto = (thumbnails) => {
   for (let i = 0; i < thumbnails.length; i++) {
     addThumbnailClickHandler(thumbnails[i], i);
   }
 };
 
-export {showBigPhoto};
+export {renderFullSizePhoto};

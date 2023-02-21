@@ -1,3 +1,3 @@
-import {renderGallery} from './gallery.js';
+import {renderGallery} from './render-gallery.js';
 
 renderGallery();

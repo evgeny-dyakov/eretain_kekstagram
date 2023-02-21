@@ -77,13 +77,13 @@ const getComments = (quantity) => {
   return comments;
 };
 
-const getPhotos = (quantity) => {
-  const fotos = [];
+const generatePhotosData = (quantity) => {
+  const photos = [];
   const getPhotoNumber = getUniqueNum(1, quantity);
   const comments = getComments(quantity);
 
   for (let i = 0; i < quantity; i++) {
-    fotos[i] = {
+    photos[i] = {
       id: i + 1,
       url: `photos/${getPhotoNumber()}.jpg`,
       description: `описание ${i + 1}`,
@@ -92,7 +92,9 @@ const getPhotos = (quantity) => {
     };
   }
 
-  return fotos;
+  return photos;
 };
 
-export const photos = getPhotos(25);
+// export const photosData = generatePhotosData(25);
+
+export {generatePhotosData};

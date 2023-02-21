@@ -3,10 +3,10 @@ const feed = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content;
 const thumbnail = thumbnailTemplate.querySelector('.picture');
 
-const showThumbnails = (fotos) => {
+const renderThumbnails = (photosData) => {
   const thumbnailsFragment = document.createDocumentFragment();
 
-  fotos.forEach((el) => {
+  photosData.forEach((el) => {
     const item = thumbnail.cloneNode(true);
     item.querySelector('.picture__img').src = el.url;
     item.querySelector('.picture__comments').textContent = el.comments.length;
@@ -18,4 +18,4 @@ const showThumbnails = (fotos) => {
   feed.appendChild(thumbnailsFragment);
 };
 
-export {showThumbnails};
+export {renderThumbnails};
