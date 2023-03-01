@@ -1,3 +1,5 @@
-import {renderGallery} from './render-gallery.js';
+import {renderThumbnails} from './render-thumbnails.js';
+import {renderBigPhoto} from './render-big-photo.js';
 
-renderGallery();
+renderThumbnails();
+renderBigPhoto();

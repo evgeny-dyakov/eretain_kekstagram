@@ -1,9 +1,9 @@
 import {getRandomNum} from './util.js';
 
-const getUniqueNum = (min, max) => {
+function getUniqueNum (min, max) {
   const numbers = [];
 
-  return () => {
+  return function () {
     if (numbers.length >= max - min + 1) {
       return null;
     }
@@ -14,10 +14,9 @@ const getUniqueNum = (min, max) => {
     numbers.push(number);
     return number;
   };
-};
+}
 
-
-const getMessage = () => {
+function getMessage () {
   const messages = [
     'Всё отлично!',
     'В целом всё неплохо. Но не всё.',
@@ -28,9 +27,9 @@ const getMessage = () => {
   ];
 
   return messages[getRandomNum(0, messages.length - 1)];
-};
+}
 
-const getName = () => {
+function getName () {
   const names = [
     'Максим',
     'Арина',
@@ -45,9 +44,9 @@ const getName = () => {
   ];
 
   return names[getRandomNum(0, names.length - 1)];
-};
+}
 
-const getComments = (quantity) => {
+function getComments (quantity) {
   const minCommentId = 111111;
   const maxCommentId = 999999;
   const minCommentsPerPhoto = 5;
@@ -73,16 +72,16 @@ const getComments = (quantity) => {
     comments[i] = commentsSet;
   }
   return comments;
-};
+}
 
-const generatePhotosData = () => {
+function generatePhotos () {
   const photosCount = 25;
-  const photosData = [];
+  const result = [];
   const getPhotoNumber = getUniqueNum(1, photosCount);
   const comments = getComments(photosCount);
 
   for (let i = 0; i < photosCount; i++) {
-    photosData[i] = {
+    result[i] = {
       id: i + 1,
       url: `photos/${getPhotoNumber()}.jpg`,
       description: `описание ${i + 1}`,
@@ -91,7 +90,9 @@ const generatePhotosData = () => {
     };
   }
 
-  return photosData;
-};
+  return result;
+}
 
-export {generatePhotosData};
+const photos = generatePhotos();
+
+export {photos};
