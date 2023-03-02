@@ -9,7 +9,6 @@ const bigPhotoComments = bigPhoto.querySelector('.social__comments');
 const bigPhotoCommentsCount = bigPhoto.querySelector('.comments-count');
 const bigPhotoDescription = bigPhoto.querySelector('.social__caption');
 const bigPhotoCancel = bigPhoto.querySelector('.big-picture__cancel');
-const bigPhotoOverlay = document.querySelector('.big-picture.overlay');
 
 function temporaryHiding () {
   bigPhoto.querySelector('.social__comment-count').classList.add('hidden');
@@ -61,7 +60,6 @@ function closeBigPhoto () {
   document.body.classList.remove('modal-open');
   thambnailsList.addEventListener('click', onThumbnailClick);
   bigPhotoCancel.removeEventListener('click', onBigPhotoCancelClick);
-  bigPhotoOverlay.removeEventListener('click', onBigPhotoOverlayClick);
   document.removeEventListener('keydown', onDocumentEscapeDown);
 }
 
@@ -70,17 +68,10 @@ function showBigPhoto (photo) {
   updateBigPhoto(photo);
   document.body.classList.add('modal-open');
   bigPhotoCancel.addEventListener('click', onBigPhotoCancelClick);
-  bigPhotoOverlay.addEventListener('click', onBigPhotoOverlayClick);
   document.addEventListener('keydown', onDocumentEscapeDown);
   thambnailsList.removeEventListener('click', onThumbnailClick);
 
   temporaryHiding();
-}
-
-function onBigPhotoOverlayClick (evt) {
-  if (!evt.target.closest('.big-picture__preview')) {
-    closeBigPhoto();
-  }
 }
 
 function onBigPhotoCancelClick () {
