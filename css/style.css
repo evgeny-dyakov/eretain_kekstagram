@@ -1395,3 +1395,25 @@ main {
 .hidden {
   display: none;
 }
+
+/**
+ * Валидатор
+ */
+
+.form-error .text__hashtags {
+  color: #FF1717;
+}
+
+.img-upload__field-wrapper {
+  position: relative;
+}
+
+.text-help {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: none;
+}
