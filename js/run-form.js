@@ -31,7 +31,7 @@ pristine.addValidator(hashtags, (value) => {
     }
   }
   return true;
-}, 'начинается с #, без спецсимволов, не более 20 знаков', 3, true);
+}, '#хэш-тег – без спецсимволов, не более 20 знаков', 3, true);
 
 pristine.addValidator(hashtags, (value) => {
   const userHashtags = getUserHashtags(value);
@@ -43,7 +43,7 @@ pristine.addValidator(hashtags, (value) => {
     }
   }
   return true;
-}, 'хэштег не может быть использован дважды', 2, true);
+}, 'без повторов', 2, true);
 
 pristine.addValidator(hashtags, (value) => {
   const userHashtags = getUserHashtags(value);
@@ -87,6 +87,8 @@ function clearFields () {
   upload.value = null;
   hashtags.value = null;
   description.value = null;
+  form.querySelector('.img-upload__field-wrapper').classList.remove('form-error');
+  form.querySelector('.text-help').style.display = 'none';
 }
 
 function onFormFieldEscapeDown (evt) {
