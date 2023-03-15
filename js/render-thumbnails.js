@@ -8,11 +8,11 @@ const thumbnail = thumbnailTemplate.querySelector('.picture');
 function renderThumbnails () {
   const thumbnailsFragment = document.createDocumentFragment();
 
-  photos.forEach((el) => {
+  photos.forEach((foto) => {
     const item = thumbnail.cloneNode(true);
-    item.querySelector('.picture__img').src = el.url;
-    item.querySelector('.picture__comments').textContent = el.comments.length;
-    item.querySelector('.picture__likes').textContent = el.likes;
+    item.querySelector('.picture__img').src = foto.url;
+    item.querySelector('.picture__comments').textContent = foto.comments.length;
+    item.querySelector('.picture__likes').textContent = foto.likes;
 
     thumbnailsFragment.appendChild(item);
   });

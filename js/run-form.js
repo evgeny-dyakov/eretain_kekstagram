@@ -1,7 +1,7 @@
 const form = document.querySelector('.img-upload__form');
 const upload = form.querySelector('.img-upload__input');
 const overlay = form.querySelector('.img-upload__overlay');
-const formCancel = form.querySelector('.img-upload__cancel');
+const closeBtn = form.querySelector('.img-upload__cancel');
 const hashtags = form.querySelector('.text__hashtags');
 const description = form.querySelector('.text__description');
 
@@ -65,7 +65,7 @@ form.addEventListener('submit', (evt) => {
 function openForm () {
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  formCancel.addEventListener('click', onFormCancelClick);
+  closeBtn.addEventListener('click', onCloseBtnClick);
   document.addEventListener('keydown', onDocumentEscapeDown);
   hashtags.addEventListener('keydown', onFormFieldEscapeDown);
   description.addEventListener('keydown', onFormFieldEscapeDown);
@@ -76,7 +76,7 @@ function closeForm () {
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   upload.addEventListener('change', onUploadClick);
-  formCancel.removeEventListener('click', onFormCancelClick);
+  closeBtn.removeEventListener('click', onCloseBtnClick);
   document.removeEventListener('keydown', onDocumentEscapeDown);
   hashtags.removeEventListener('keydown', onFormFieldEscapeDown);
   description.removeEventListener('keydown', onFormFieldEscapeDown);
@@ -101,7 +101,7 @@ function onDocumentEscapeDown (evt) {
   }
 }
 
-function onFormCancelClick () {
+function onCloseBtnClick () {
   closeForm();
 }
 

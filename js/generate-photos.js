@@ -49,8 +49,8 @@ function getName () {
 function getComments (quantity) {
   const minCommentId = 111111;
   const maxCommentId = 999999;
-  const minCommentsPerPhoto = 5;
-  const maxCommentsPerPhoto = 10;
+  const minCommentsPerPhoto = 2;
+  const maxCommentsPerPhoto = 15;
 
   const comments = [];
   const getCommentId = getUniqueNum(minCommentId, maxCommentId);
